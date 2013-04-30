@@ -33,6 +33,7 @@ class RegistrationController extends Controller
 
         return $this->render('AcmeUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
+            'translation_domain' => 'AcmeUserBundle',
         ));
     }
 

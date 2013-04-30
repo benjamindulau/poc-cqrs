@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="acme_user.data.user.user_repository.class">Acme\UserBundle\Data\User\FakeUserDataRepository</parameter>
+        <parameter key="acme_user.data.user.user_event_handler.class">Acme\UserBundle\Data\User\UserEventHandler</parameter>
+    </parameters>
+
+    <services>
+        <service id="acme_user.data.user.user_repository" class="%acme_user.data.user.user_repository.class%" public="false">
+        </service>
+
+        <service id="acme_user.data.user.user_event_handler" class="%acme_user.data.user.user_event_handler.class%" public="false">
+            <argument type="service" id="acme_user.data.user.user_repository" />
+        </service>
+    </services>
+</container>

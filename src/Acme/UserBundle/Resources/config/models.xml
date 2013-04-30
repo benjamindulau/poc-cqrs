@@ -3,9 +3,13 @@
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="acme_user.domain.model.user.user_service.class">Acme\UserBundle\Domain\Model\User\UserService</parameter>
+    </parameters>
 
     <services>
-        <service id="acme_user.domain.model.user.user_service" class="Acme\UserBundle\Domain\Model\User\UserService" public="false">
+        <service id="acme_user.domain.model.user.user_service" class="%acme_user.domain.model.user.user_service.class%" public="false">
+            <argument type="service" id="acme_user.persistence.user_repository" />
             <tag name="lite_cqrs.command_handler" />
         </service>
     </services>

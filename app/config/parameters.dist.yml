@@ -1,0 +1,22 @@
+parameters:
+    db.write.driver:   pdo_sqlite
+    db.write.host:     127.0.0.1
+    db.write.port:     ~
+    db.write.user:     root
+    db.write.password: ~
+    db.write.path:     %kernel.root_dir%/Resources/db/write.db3
+
+    db.read.driver:   pdo_sqlite
+    db.read.host:     127.0.0.1
+    db.read.port:     ~
+    db.read.user:     root
+    db.read.password: ~
+    db.read.path:     %kernel.root_dir%/Resources/db/read.db3
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt

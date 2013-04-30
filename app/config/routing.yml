@@ -1,0 +1,5 @@
+acme_home:
+    resource: "@AcmeHomeBundle/Resources/config/routing/home.yml"
+
+acme_user:
+    resource: "@AcmeUserBundle/Resources/config/routing/user.yml"

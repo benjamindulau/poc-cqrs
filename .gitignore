@@ -3,6 +3,7 @@
 /app/bootstrap*
 /app/cache/*
 /app/logs/*
+/app/Resources/db/*
 /build/
 /vendor/
 /composer.phar

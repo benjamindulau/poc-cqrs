@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new LiteCQRS\Plugin\SymfonyBundle\LiteCQRSBundle(),
+            new Acme\CommonBundle\AcmeCommonBundle(),
+            new Acme\HomeBundle\AcmeHomeBundle(),
             new Acme\UserBundle\AcmeUserBundle(),
         );
 

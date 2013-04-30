@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <form action="" {{ form_enctype(form) }} method="post">
+        {{ form_widget(form) }}
+        <div class="form-submit">
+            <input type="submit" value="{{ 'registration.form.submit'|trans([], translation_domain) }}" />
+        </div>
+    </form>
+
+{% endblock body %}
