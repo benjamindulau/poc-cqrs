@@ -63,9 +63,20 @@ doctrine:
         entity_managers:
             write:
                 connection: write
+                auto_mapping: false
                 mappings:
-                    AcmeUserBundle: { type: xml, prefix: Acme\UserBundle\Domain\Model }
-
+                    AcmeUserBundle:
+                        type: xml
+                        prefix: Acme\UserBundle\Domain\Model
+                        dir: %kernel.root_dir%/../src/Acme/UserBundle/Resources/config/doctrine/model
+            read:
+                connection: read
+                auto_mapping: false
+                mappings:
+                    AcmeUserBundle:
+                        type: xml
+                        prefix: Acme\UserBundle\Data
+                        dir: %kernel.root_dir%/../src/Acme/UserBundle/Resources/config/doctrine/data
 
 # Swiftmailer Configuration
 swiftmailer:

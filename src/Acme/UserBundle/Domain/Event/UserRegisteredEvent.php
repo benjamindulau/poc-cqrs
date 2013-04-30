@@ -12,6 +12,7 @@ class UserRegisteredEvent extends DomainEvent
     public $password;
     public $roles;
     public $enabled;
+    public $createdAt;
 
     public function getEventName()
     {

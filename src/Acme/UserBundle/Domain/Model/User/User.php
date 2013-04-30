@@ -6,6 +6,7 @@ use Acme\CommonBundle\Domain\Event\DomainEventProvider;
 use Acme\UserBundle\Domain\Event\UserChangedEmailEvent;
 use Acme\UserBundle\Domain\Event\UserRegisteredEvent;
 use Acme\UserBundle\Domain\Event\UserVerifiedEmailEvent;
+use Ano\Utils\Guid;
 use DateTime;
 
 class User extends DomainEventProvider
@@ -36,6 +37,10 @@ class User extends DomainEventProvider
      */
     public function register($screenName, $email, $password, array $roles = array())
     {
+        // TODO: make the ID a Value Object
+        $guid = new Guid();
+        $this->id = $guid->generateGuid();
+
         $this->createdAt = new DateTime();
         $this->screenName = $screenName;
         $this->email = $email;
@@ -63,6 +68,7 @@ class User extends DomainEventProvider
             'password' => $this->password,
             'roles' => $this->roles,
             'enabled' => $this->enabled,
+            'createdAt' => $this->createdAt,
         )));
     }
 

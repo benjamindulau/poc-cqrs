@@ -48,6 +48,6 @@ class SettingsController extends Controller
      */
     public function getUserDataRepository()
     {
-        return $this->get('acme_user.data.user.repository');
+        return $this->get('acme_user.data.user.user_repository');
     }
 }

@@ -27,6 +27,8 @@ Then, ask doctrine to create the database and the schema:
 ```bash
 $ app/console doctrine:database:create --connection=write
 $ app/console doctrine:schema:create --em=write
+$ app/console doctrine:database:create --connection=read
+$ app/console doctrine:schema:create --em=read
 ```
 
 CQRS Workflow

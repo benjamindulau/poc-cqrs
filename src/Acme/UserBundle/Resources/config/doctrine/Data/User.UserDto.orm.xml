@@ -4,23 +4,17 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Acme\UserBundle\Domain\Model\User\User" table="users">
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO" />
-        </id>
-
+    <entity name="Acme\UserBundle\Data\User\UserDto" table="users">
+        <id name="id" type="string" column="id" />
         <field name="screenName" column="screen_name" type="string" length="255" unique="true" nullable="true" />
         <field name="email" column="email" type="string" length="255" unique="true" />
         <field name="emailVerified" column="email_verified" type="boolean" />
-        <field name="emailVerificationToken" column="email_verification_token" type="string" length="255" />
-        <field name="emailVerifiedAt" column="email_verified_at" type="datetime" nullable="true"/>
-        <field name="password" column="password" type="string"/>
-        <field name="salt" column="salt" type="string"/>
-        <field name="algorithm" column="algorithm" type="string" />
+        <field name="password" column="password" type="string" />
+        <field name="salt" column="salt" type="string" nullable="true" />
         <field name="enabled" column="enabled" type="boolean"/>
-        <field name="roles" column="roles" type="array"/>
-        <field name="createdAt" column="created_at" type="datetime"/>
         <field name="lastLoginAt" column="last_login_at" type="datetime" nullable="true"/>
+        <field name="createdAt" column="created_at" type="datetime"/>
+        <field name="roles" column="roles" type="array" />
     </entity>
 
 </doctrine-mapping>

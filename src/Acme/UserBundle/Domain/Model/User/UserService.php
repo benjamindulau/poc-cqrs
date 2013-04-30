@@ -5,13 +5,16 @@ namespace Acme\UserBundle\Domain\Model\User;
 use Acme\UserBundle\Web\Command\ChangeEmailCommand;
 use Acme\UserBundle\Web\Command\RegisterCommand;
 use Acme\UserBundle\Web\Command\VerifyEmailCommand;
+use LiteCQRS\Bus\IdentityMap\SimpleIdentityMap;
 
 class UserService implements UserServiceInterface
 {
+    protected $identityMap;
     protected $userRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(SimpleIdentityMap $identityMap, UserRepositoryInterface $userRepository)
     {
+        $this->identityMap = $identityMap;
         $this->userRepository = $userRepository;
     }
 
@@ -21,6 +24,7 @@ class UserService implements UserServiceInterface
 
         // TODO: Implement a factory example
         $user = new User();
+        $this->identityMap->add($user);
 
         // TODO: add business rules validation in User object
         $user->register(

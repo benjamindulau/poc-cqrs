@@ -17,20 +17,19 @@ class UserEventHandler
 
     public function onUserRegistered(UserRegisteredEvent $event)
     {
-        $userDto = $this->userDataRepository->getById($event->id);
-        if (null == $userDto) {
-            $userDto = new UserDto();
-        }
+        $userDto = new UserDto();
 
-        // TODO: automatize DTO assemblage
+        // TODO: automatize DTO assemblage, maybe by using event introspection?
         $userDto->id = $event->id;
         $userDto->screenName = $event->screenName;
         $userDto->email = $event->email;
+        $userDto->emailVerified = false;
         $userDto->password = $event->password;
         $userDto->roles = $event->roles;
         $userDto->enabled = $event->enabled;
+        $userDto->createdAt = $event->createdAt;
 
-        $this->userDataRepository->save($userDto);
+        $this->userDataRepository->saveOrUpdate($userDto, false);
     }
 
     public function onUserChangedEmail(UserChangedEmailEvent $event)
@@ -43,7 +42,7 @@ class UserEventHandler
         $userDto->email = $event->email;
         $userDto->emailVerified = $event->emailVerified;
 
-        $this->userDataRepository->save($userDto);
+        $this->userDataRepository->saveOrUpdate($userDto, true);
     }
 
     public function onUserVerifiedEmail(UserVerifiedEmailEvent $event)
@@ -55,6 +54,6 @@ class UserEventHandler
 
         $userDto->emailVerified = true;
 
-        $this->userDataRepository->save($userDto);
+        $this->userDataRepository->saveOrUpdate($userDto, true);
     }
 }

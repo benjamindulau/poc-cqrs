@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <ul>
+        {% for user in users %}
+            <li>{{ user.screenName }} &lt;{{ user.email }}&gt;</li>
+        {% endfor %}
+    </ul>
+{% endblock body %}

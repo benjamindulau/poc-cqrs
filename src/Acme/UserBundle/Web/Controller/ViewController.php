@@ -6,7 +6,7 @@ use Acme\CommonBundle\Web\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserController extends Controller
+class ViewController extends Controller
 {
     /**
      * @param Request $request
@@ -17,8 +17,21 @@ class UserController extends Controller
     {
         $user = $this->getUserDataRepository()->getById($id);
 
-        $this->render('AcmeUserBundle:User:view.html.twig', array(
-            'user' => $user
+        return $this->render('AcmeUserBundle:View:view.html.twig', array(
+            'user' => $user,
+        ));
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function listAction(Request $request)
+    {
+        $users = $this->getUserDataRepository()->getAll();
+
+        return $this->render('AcmeUserBundle:View:list.html.twig', array(
+            'users' => $users,
         ));
     }
 
@@ -27,6 +40,6 @@ class UserController extends Controller
      */
     public function getUserDataRepository()
     {
-        return $this->get('acme_user.data.user.repository');
+        return $this->get('acme_user.data.user.user_repository');
     }
 }

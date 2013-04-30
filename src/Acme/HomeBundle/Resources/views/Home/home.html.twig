@@ -2,4 +2,9 @@
 
 {% block body %}
     <a href="{{ path('user_register') }}">Register</a>
+
+    <hr />
+    <h2>Registered Users</h2>
+    {{ render(controller('acme_user.web.controller.view:listAction')) }}
+
 {% endblock body %}

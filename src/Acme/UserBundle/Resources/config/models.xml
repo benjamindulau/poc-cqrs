@@ -8,7 +8,8 @@
     </parameters>
 
     <services>
-        <service id="acme_user.domain.model.user.user_service" class="%acme_user.domain.model.user.user_service.class%" public="false">
+        <service id="acme_user.domain.model.user.user_service" class="%acme_user.domain.model.user.user_service.class%">
+            <argument type="service" id="litecqrs.identity_map" />
             <argument type="service" id="acme_user.persistence.user_repository" />
             <tag name="lite_cqrs.command_handler" />
         </service>

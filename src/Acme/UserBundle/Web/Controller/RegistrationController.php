@@ -20,15 +20,22 @@ class RegistrationController extends Controller
         $registerCommand = new RegisterCommand();
         $form = $this->createForm(new RegisterCommandFormType(), $registerCommand);
 
-        if ('POST' == $request->getMethod() && $form->isValid()) {
-            /*
-             * TODO:
-             *
-             * Since commands doesn't return any data,
-             * how to send messages back to the user ?
-             * Such as success or failure messages ?
-             */
-            $this->getCommandBus()->handle($registerCommand);
+        if ('POST' == $request->getMethod()) {
+            $form->bind($request);
+
+            // TODO: create command validation constraints (pre-validation)
+            if ($form->isValid()) {
+                /*
+                 * TODO:
+                 *
+                 * Since commands doesn't return any data,
+                 * how to send messages back to the user ?
+                 * Such as success or failure messages ?
+                 */
+                $this->getCommandBus()->handle($registerCommand);
+
+                return $this->redirect($this->generateUrl('user_list'));
+            }
         }
 
         return $this->render('AcmeUserBundle:Registration:register.html.twig', array(
@@ -68,6 +75,6 @@ class RegistrationController extends Controller
      */
     public function getUserDataRepository()
     {
-        return $this->get('acme_user.data.user.repository');
+        return $this->get('acme_user.data.user.user_repository');
     }
 }

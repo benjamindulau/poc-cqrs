@@ -13,7 +13,13 @@ interface UserDataRepositoryInterface extends UserProviderInterface
     public function getById($id);
 
     /**
-     * @param UserDto $user
+     * @return array|UserDto[]
      */
-    public function save(UserDto $user);
+    public function getAll();
+
+    /**
+     * @param UserDto $user
+     * @param bool    $update
+     */
+    public function saveOrUpdate(UserDto $user, $update = true);
 }
