@@ -34,7 +34,7 @@ class RegistrationController extends Controller
                  */
                 $this->getCommandBus()->handle($registerCommand);
 
-                return $this->redirect($this->generateUrl('user_list'));
+                return $this->redirect($this->generateUrl('home_home'));
             }
         }
 
