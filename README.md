@@ -31,6 +31,30 @@ $ app/console doctrine:database:create --connection=read
 $ app/console doctrine:schema:create --em=read
 ```
 
+Namespaces organization
+-----------------------
+
+Here are some information about namespaces organization within the CQRS architecture for helping newcomers to find their
+way through the code ;-)
+
+```
+Acme/
+    UserBundle/
+        Data/    <= Read model
+        Domain/  <= guess? (domain layer, write model)
+            Event/  <= Domain events
+            Model/
+                User/
+                    User.php                    <=  User write model
+                    UserRepositoryInterface.php <=  Repository interface is part of the domain layer!
+                    UserService.php             <=  Command handler
+        Persistence/  <= Implementation for write repositories
+        Web/      <= UI
+            Command/  <= Messages from UI (an user makes a change on the UI)
+            Controller/
+```
+
+
 CQRS Workflow
 -------------
 
